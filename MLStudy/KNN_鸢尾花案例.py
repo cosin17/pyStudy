@@ -36,5 +36,19 @@ def dm02_show_iris():
     print(iris_df)
     plt.show()
 
+# 3.定义函数 切分训练集和测试集
+def dm03_split_train_test():
+    iris_data = load_iris()
+    # 数据预处理: 从150个特征和标签中，按照 8：2 的比例，切分训练集和测试集
+    # 返回值：训练集和测试集的特征和标签
+    x_train, x_test, y_train, y_test = train_test_split(iris_data.data, iris_data.target, test_size=0.2, random_state=23)
+
+    # 打印训练集和测试集的特征和标签
+    print(f'训练集特征：{x_train},个数：{len(x_train)}') # 120条，每条4列
+    print(f'训练集标签：{y_train},个数：{len(y_train)}') # 120条 ，每条1列
+    print(f'测试集特征：{x_test},个数：{len(x_test)}') # 30条，每条4列
+    print(f'测试集标签：{y_test},个数：{len(y_test)}') # 30条，每条1列
+
 # dm01_load_iris()
-dm02_show_iris()
+# dm02_show_iris()
+dm03_split_train_test()
