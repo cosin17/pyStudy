@@ -69,7 +69,7 @@ def dm04_iris_evaluate_test():
 
     # 模型训练
     # 创建模型对象
-    estimator = KNeighborsClassifier(n_neighbors=3) # 分类思路
+    estimator = KNeighborsClassifier(n_neighbors=3) # 分类思路 默认n_neighbors=5
     # 对模型进行训练
     estimator.fit(x_train, y_train)
 
