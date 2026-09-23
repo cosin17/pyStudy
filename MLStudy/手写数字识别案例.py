@@ -68,7 +68,31 @@ def train_model():
     # 参1：模型对象 参2：模型保存的路径
     joblib.dump(estimator, './model/手写数字识别.pkl') # pickle文件：Python(Pandas)独有的文件类型
     print('模型保存成功!')
+
+# 定义函数 测试模型
+def use_model():
+    # 加载图片
+    x = plt.imread('./data/demo.png')
+    # 绘制图片
+    plt.imshow(x,cmap='gray')
+    plt.show()
+
+    # 加载模型
+    estimator = joblib.load('./model/手写数字识别.pkl')
+    # 预测
+    # print(x.reshape(1,-1).shape)
+
+    # 具体的转换动作
+    x = x.reshape(1,-1)/255 # 归一化
+    # 模型预测
+    y_pred = estimator.predict(x)
+    print(f'预测结果为：{y_pred}')
+
+
 # 测试
 if __name__ == '__main__':
     # show_digit(9)
-    train_model()
+    # train_model()
+
+    # 模型预测（使用模型）
+    use_model()
