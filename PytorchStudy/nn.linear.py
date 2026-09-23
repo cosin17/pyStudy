@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 
 from nn_module import output
 
-dataset = torchvision.datasets.CIFAR10("../data", train=False, transform=torchvision.transforms.ToTensor(), download=True)
+dataset = torchvision.datasets.CIFAR10("../MLStudy/data", train=False, transform=torchvision.transforms.ToTensor(), download=True)
 dataloader = DataLoader(dataset, batch_size=64) # 批量大小
 
 class Kewei(nn.Module):

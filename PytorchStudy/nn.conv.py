@@ -7,8 +7,8 @@ from torch.utils.tensorboard import SummaryWriter
 from torchvision.transforms import ToTensor
 
 # 加载数据集
-dataset = torchvision.datasets.CIFAR10("../data", train=False, transform=ToTensor(),
-                                       download=True )
+dataset = torchvision.datasets.CIFAR10("../MLStudy/data", train=False, transform=ToTensor(),
+                                       download=True)
 dataloader = DataLoader(dataset, batch_size=64) # 批量大小
 class Kewei(nn.Module):
     def __init__(self):
