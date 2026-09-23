@@ -83,7 +83,8 @@ def use_model():
     # print(x.reshape(1,-1).shape)
 
     # 具体的转换动作
-    x = x.reshape(1,-1)/255 # 归一化
+    # x = x.reshape(1,-1)/255 # 归一化 可能会预测失败 因为读图的时候，像素值可能不是特别的准确
+    x = x.reshape(1,-1)
     # 模型预测
     y_pred = estimator.predict(x)
     print(f'预测结果为：{y_pred}')
