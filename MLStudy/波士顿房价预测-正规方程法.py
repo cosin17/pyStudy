@@ -77,6 +77,7 @@ x_test = transfer.transform(x_test)
 
 # 4.模型训练
 # 创建 线性回归 正规方程 模型对象
+# estimator = SGDRegressor(fit_intercept=True,learning_rate='constant',eta0=0.01) 梯度下降模型
 estimator = LinearRegression(fit_intercept=True) # fit_intercept:是否需要截距，默认是True
 # 训练模型
 estimator.fit(x_train, y_train)
