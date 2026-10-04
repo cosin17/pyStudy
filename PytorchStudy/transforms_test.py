@@ -13,7 +13,7 @@ from test_tb import image_path
 img_path = "../hymenoptera_data/train/ants/0013035.jpg"
 img = Image.open(img_path)
 
-writer = SummaryWriter("../logs")
+writer = SummaryWriter("logs")
 
 # 1. transforms该如何使用
 tensor_trans = transforms.ToTensor()
