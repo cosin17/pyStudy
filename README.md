@@ -31,6 +31,21 @@
 - `nn.Module`、线性层和卷积层基础
 - CIFAR-10 数据集的加载与简单前向传播
 
+## 示例索引
+
+| 方向 | 示例文件 | 主要内容 | 数据要求 |
+| --- | --- | --- | --- |
+| KNN | `KNN_分类思路.py`、`KNN_回归思路.py` | KNN 分类与回归的基本原理 | 无外部数据 |
+| KNN 案例 | `KNN_鸢尾花案例.py` | 数据划分、标准化、训练与准确率评估 | scikit-learn 内置鸢尾花数据集 |
+| 特征处理 | `特征值预处理_归一化.py`、`特征预处理_标准化.py` | Min-Max 归一化与 Z-score 标准化 | 无外部数据 |
+| 模型选择 | `网格搜索和交叉验证.py` | KNN 超参数搜索与交叉验证 | scikit-learn 内置鸢尾花数据集 |
+| 回归 | `线性回归API入门.py`、`波士顿房价预测-正规方程法.py` | 线性回归、误差评估与正则化 | 房价案例运行时需要网络 |
+| 分类 | `逻辑回归_癌症预测.py`、`逻辑回归_电信流失用户预测.py` | 二分类流程和分类指标 | 需要对应 CSV 文件 |
+| 树模型 | `CART分类_泰坦尼克号案例.py`、`随机森林算法_代码演示.py` | 决策树、随机森林和参数调优 | 需要泰坦尼克号 CSV 文件 |
+| 集成学习 | `AdaBoost算法_葡萄酒案例.py` | AdaBoost 分类流程 | 需要葡萄酒 CSV 文件 |
+| PyTorch 基础 | `TestPyTorch.py`、`nn_module.py` | 环境检查和 `nn.Module` 基础 | 无外部数据 |
+| 图像与网络层 | `transforms_test.py`、`nn.conv.py`、`nn.linear.py` | 图像变换、卷积层、线性层和 TensorBoard | 使用仓库图片或下载 CIFAR-10 |
+
 ## 项目结构
 
 ```text
@@ -49,7 +64,7 @@ pyStudy/
 - 建议使用虚拟环境
 - PyTorch 是否支持 CUDA 取决于显卡、驱动和安装版本；没有 GPU 时也可以使用 CPU 运行多数示例
 
-常用依赖如下：
+机器学习示例的常用依赖：
 
 ```text
 numpy
@@ -58,6 +73,11 @@ matplotlib
 seaborn
 scikit-learn
 joblib
+```
+
+PyTorch 示例还需要：
+
+```text
 pillow
 torch
 torchvision
@@ -74,10 +94,17 @@ Windows PowerShell：
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
-pip install numpy pandas matplotlib seaborn scikit-learn joblib pillow torch torchvision tensorboard
+python -m pip install --upgrade pip
+pip install numpy pandas matplotlib seaborn scikit-learn joblib
 ```
 
-> PyTorch 的 CPU、CUDA 安装命令可能不同，建议根据自己的设备参考 [PyTorch 官方安装页面](https://pytorch.org/get-started/locally/)。
+如果要运行 PyTorch 示例，再安装：
+
+```powershell
+pip install pillow torch torchvision tensorboard
+```
+
+> PyTorch 的 CPU、CUDA 安装命令可能不同。若需要使用显卡，建议根据自己的设备参考 [PyTorch 官方安装页面](https://pytorch.org/get-started/locally/) 生成安装命令。
 
 ## 运行示例
 
@@ -126,12 +153,53 @@ tensorboard --logdir ../logs
 
 如果本地没有相应文件，这些脚本会出现文件不存在的错误，需要先准备数据并放入 `MLStudy/data`。CIFAR-10 示例设置了 `download=True`，首次运行时需要网络连接并会自动下载数据。
 
+推荐的数据目录形式如下：
+
+```text
+MLStudy/
+└── data/
+    ├── breast-cancer-wisconsin.csv
+    ├── churn.csv
+    ├── titanic_train.csv
+    ├── wine.csv
+    ├── train.csv
+    └── demo.png
+```
+
+外部数据文件的列名和格式需要与脚本中的读取、特征选择逻辑保持一致。体积较大的数据集、模型和运行日志通常不建议提交到 Git 仓库。
+
 ## 使用提示
 
 - 文件名包含中文，建议使用 UTF-8 编码和支持中文路径的终端或 IDE。
 - 部分脚本执行后会显示 Matplotlib 图形或生成 TensorBoard 日志。
 - 示例代码重在展示学习思路，运行前可以打开脚本查看末尾实际调用了哪个函数。
 - 数据集路径和输出路径均以脚本当前实现为准；建议从 `MLStudy` 或 `PytorchStudy` 子目录运行对应脚本。如果更改运行目录，需要同步调整相对路径。
+- `nn.conv.py` 和 `nn.linear.py` 首次运行时会下载 CIFAR-10，请确保网络连接正常并预留数据存储空间。
+- 如果绘图时中文显示异常，可在 Matplotlib 中配置本机已有的中文字体。
+
+## 常见问题
+
+### 提示找不到文件
+
+先确认当前终端位于正确的子目录，并检查 `MLStudy/data` 中是否存在脚本需要的数据文件。可在 PowerShell 中运行 `Get-Location` 查看当前位置。
+
+### TensorBoard 没有显示内容
+
+先运行会写入日志的 PyTorch 脚本，再从 `PytorchStudy` 目录执行：
+
+```powershell
+tensorboard --logdir ../logs
+```
+
+### PyTorch 无法使用 CUDA
+
+运行以下脚本检查环境：
+
+```powershell
+python TestPyTorch.py
+```
+
+输出为 `False` 时，程序仍可使用 CPU；如需 GPU，应检查 NVIDIA 驱动、CUDA 兼容性以及 PyTorch 安装版本。
 
 ## 学习目标
 
