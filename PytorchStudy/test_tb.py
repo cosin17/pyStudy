@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 
 writer = SummaryWriter("logs")   # 创建SummaryWriter对象，日志保存到当前目录下的logs文件夹
-image_path = "../hymenoptera_data/train/ants/5650366_e22b7e1065.jpg"
+image_path = "hymenoptera_data/train/ants/5650366_e22b7e1065.jpg"
 img_PIL = Image.open(image_path)
 img_array = np.array(img_PIL)    # PIL图片转numpy数组，shape是 [H,W,C] 高、宽、通道
 
