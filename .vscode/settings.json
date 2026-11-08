@@ -4,5 +4,6 @@
     "trae.enableCodelens": {
         "enableInlineDocumentation": false,
         "enableInlineExplain": false
-    }
+    },
+    "git.ignoreLimitWarning": true
 }
