@@ -1,0 +1,13 @@
+# 数据集与训练产物（体积大，不入库）
+/yolo_Project/VOCdevkit/
+/yolo_Project/HelmetDataset-*/
+/yolo_Project/train/
+/yolo_Project/val/
+/yolo_Project/runs/
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 模型权重
+*.pt
